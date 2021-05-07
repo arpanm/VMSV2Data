@@ -1,0 +1,257 @@
+
+entity Program {
+	name String,
+    email String,
+	phoneNumber String,
+    deploymentRegion Region,
+    subdomain String,
+    implementationManagerEmail String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity Hierarchy {
+	name String,
+    workFlow String,
+    preferredLanguage Language,
+    preferredCurrency Currency,
+    primaryCountry Country,
+    primaryAddress String,
+    secondaryCountry Country,
+    secondaryAddress String,
+    primaryContactName String,
+    primaryContactDesignation String,
+    primaryContactEmail String,
+    primaryContactPhone String,
+    secondaryContactName String,
+    secondaryContactDesignation String,
+    secondaryContactEmail String,
+    secondaryContactPhone String,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity ProgramUser {
+    firstName String,
+    lastName String,
+    email String,
+    sourceId String,
+	phoneNumber String,
+    clientDesignation String,
+    simplifyRole Role,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity WorkLocation {
+	code String,
+    name String,
+    description String,
+    country Country,
+    state State,
+    address String,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+
+entity FoundationalDataType {
+	name String,
+    description String,
+    requiredInHierarchy Boolean,
+    requiredInJobs Boolean,
+    requiredInSow Boolean,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity CustomFieldType {
+	name String,
+    code String,
+    description String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity FoundationalData {
+	name String,
+    code String,
+    description String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity CustomFieldData {
+	value String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+
+enum Region {
+	Ohio,
+    Mumbai
+}
+
+enum Language {
+	English,
+    Spanish,
+    Hindi
+}
+
+enum Currency {
+	USD,
+    INR
+}
+enum Country {
+	US,
+    India
+}
+
+enum Role {
+	Administrator,
+	Hiring_Manager,
+	Finance_Manager,
+	Timesheet_Approver,
+	Job_Approver
+}
+
+enum State {
+	Alabama(US),
+	Alaska(US),
+	Arizona(US),
+	Arkansas(US),
+	California(US),
+	Colorado(US),
+	Connecticut(US),
+	Delaware(US),
+	Florida(US),
+	Georgia(US),
+	Hawaii(US),
+	Idaho(US),
+	Illinois(US),
+	Indiana(US),
+	Iowa(US),
+	Kansas(US),
+	Kentucky(US),
+	Louisiana(US),
+	Maine(US),
+	Maryland(US),
+	Massachusetts(US),
+	Michigan(US),
+	Minnesota(US),
+	Mississippi(US),
+	Missouri(US),
+	Montana(US),
+	Nebraska(US),
+	Nevada(US),
+	New_Hampshire(US),
+	New_Jersey(US),
+	New_Mexico(US),
+	New_York(US),
+	North_Carolina(US),
+	North_Dakota(US),
+	Ohio(US),
+	Oklahoma(US),
+	Oregon(US),
+	Pennsylvania(US),
+	Rhode_Island(US),
+	South_Carolina(US),
+	South_Dakota(US),
+	Tennessee(US),
+	Texas(US),
+	Utah(US),
+	Vermont(US),
+	Virginia(US),
+	Washington(US),
+	West_Virginia(US),
+	Wisconsin(US),
+	Wyoming(US)
+}
+
+relationship OneToMany {
+	Program to Hierarchy{client}
+}
+
+relationship OneToMany {
+	Program to WorkLocation{client}
+}
+
+relationship OneToMany {
+	Hierarchy to Hierarchy{parent}
+}
+
+relationship ManyToMany {
+	Hierarchy{managers} to ProgramUser{hierarchy}
+}
+
+relationship OneToMany {
+	ProgramUser to ProgramUser{manager}
+}
+
+relationship OneToMany {
+	WorkLocation to ProgramUser{location}
+}
+
+
+relationship OneToMany {
+	Hierarchy to FoundationalDataType{hierarchy}
+}
+
+relationship OneToMany {
+	FoundationalDataType to CustomFieldType{foundationalDataType}
+}
+
+relationship OneToMany {
+	FoundationalDataType to FoundationalData{foundationalDataType}
+}
+
+relationship ManyToMany {
+	FoundationalData{managers} to User{foundationalData}
+}
+
+relationship OneToMany {
+	FoundationalData to CustomFieldData{foundationalData}
+    CustomFieldType to CustomFieldData{customFieldType}
+}
+
+
+// Set pagination options
+paginate Program, Hierarchy, User, WorkLocation, FoundationalDataType, CustomFieldType, FoundationalData  with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
