@@ -1,0 +1,35 @@
+application {
+    config {
+      baseName VMSV2Data,
+      applicationType monolith,
+      packageName com.simplify.vms.onboard.data,
+      authenticationType jwt,
+      prodDatabaseType mysql,
+      clientFramework angular
+    }
+    entities *
+  	paginate Program  with infinite-scroll
+	service all with serviceImpl
+}
+
+entity Program {
+	name String,
+    email String,
+	phoneNumber String,
+    deploymentRegion Region,
+    subdomain String,
+    implementationManagerEmail String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+
+enum Region {
+	Ohio,
+    Mumbai
+}
+
+
