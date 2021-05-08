@@ -1,0 +1,32 @@
+{
+  "vmsv2DataApp": {
+    "customFieldType": {
+      "home": {
+        "title": "Custom Field Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Custom Field Type",
+        "createOrEditLabel": "Create or edit a Custom Field Type",
+        "notFound": "No Custom Field Types found"
+      },
+      "created": "A new Custom Field Type is created with identifier {{ param }}",
+      "updated": "A Custom Field Type is updated with identifier {{ param }}",
+      "deleted": "A Custom Field Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Custom Field Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Custom Field Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "foundationalDataType": "Foundational Data Type"
+    }
+  }
+}

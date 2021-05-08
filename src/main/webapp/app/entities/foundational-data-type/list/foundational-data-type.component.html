@@ -1,0 +1,129 @@
+<div>
+  <h2 id="page-heading" data-cy="FoundationalDataTypeHeading">
+    <span jhiTranslate="vmsv2DataApp.foundationalDataType.home.title">Foundational Data Types</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.foundationalDataType.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-foundational-data-type"
+        [routerLink]="['/foundational-data-type/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.foundationalDataType.home.createLabel"> Create a new Foundational Data Type </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="foundationalDataTypes?.length === 0">
+    <span jhiTranslate="vmsv2DataApp.foundationalDataType.home.notFound">No foundationalDataTypes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="foundationalDataTypes && foundationalDataTypes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="requiredInHierarchy">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInHierarchy">Required In Hierarchy</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="requiredInJobs">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInJobs">Required In Jobs</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="requiredInSow">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInSow">Required In Sow</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fileUploadPath">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.fileUploadPath">File Upload Path</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hierarchy.id">
+            <span jhiTranslate="vmsv2DataApp.foundationalDataType.hierarchy">Hierarchy</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let foundationalDataType of foundationalDataTypes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/foundational-data-type', foundationalDataType.id, 'view']">{{ foundationalDataType.id }}</a>
+          </td>
+          <td>{{ foundationalDataType.name }}</td>
+          <td>{{ foundationalDataType.description }}</td>
+          <td>{{ foundationalDataType.requiredInHierarchy }}</td>
+          <td>{{ foundationalDataType.requiredInJobs }}</td>
+          <td>{{ foundationalDataType.requiredInSow }}</td>
+          <td>{{ foundationalDataType.fileUploadPath }}</td>
+          <td>{{ foundationalDataType.isActive }}</td>
+          <td>{{ foundationalDataType.createdBy }}</td>
+          <td>{{ foundationalDataType.createdAt | formatMediumDate }}</td>
+          <td>{{ foundationalDataType.updatedBy }}</td>
+          <td>{{ foundationalDataType.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="foundationalDataType.hierarchy">
+              <a [routerLink]="['/hierarchy', foundationalDataType.hierarchy?.id, 'view']">{{ foundationalDataType.hierarchy?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foundational-data-type', foundationalDataType.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/foundational-data-type', foundationalDataType.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(foundationalDataType)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

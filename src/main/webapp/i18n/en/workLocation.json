@@ -1,0 +1,36 @@
+{
+  "vmsv2DataApp": {
+    "workLocation": {
+      "home": {
+        "title": "Work Locations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Work Location",
+        "createOrEditLabel": "Create or edit a Work Location",
+        "notFound": "No Work Locations found"
+      },
+      "created": "A new Work Location is created with identifier {{ param }}",
+      "updated": "A Work Location is updated with identifier {{ param }}",
+      "deleted": "A Work Location is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Work Location {{ id }}?"
+      },
+      "detail": {
+        "title": "Work Location"
+      },
+      "id": "ID",
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "country": "Country",
+      "state": "State",
+      "address": "Address",
+      "fileUploadPath": "File Upload Path",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "client": "Client"
+    }
+  }
+}

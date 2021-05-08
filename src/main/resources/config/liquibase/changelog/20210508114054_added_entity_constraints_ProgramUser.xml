@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity ProgramUser.
+    -->
+    <changeSet id="20210508114054-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="manager_id"
+                                 baseTableName="program_user"
+                                 constraintName="fk_program_user__manager_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="program_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="program_user"
+                                 constraintName="fk_program_user__location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_location"/>
+    </changeSet>
+</databaseChangeLog>

@@ -48,6 +48,18 @@ public class CacheConfiguration {
             createCache(cm, com.simplify.vms.onboard.data.domain.User.class.getName());
             createCache(cm, com.simplify.vms.onboard.data.domain.Authority.class.getName());
             createCache(cm, com.simplify.vms.onboard.data.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.simplify.vms.onboard.data.domain.Program.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.Hierarchy.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.Hierarchy.class.getName() + ".managers");
+            createCache(cm, com.simplify.vms.onboard.data.domain.ProgramUser.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.ProgramUser.class.getName() + ".hierarchies");
+            createCache(cm, com.simplify.vms.onboard.data.domain.ProgramUser.class.getName() + ".foundationalData");
+            createCache(cm, com.simplify.vms.onboard.data.domain.WorkLocation.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.FoundationalDataType.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.CustomFieldType.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.FoundationalData.class.getName());
+            createCache(cm, com.simplify.vms.onboard.data.domain.FoundationalData.class.getName() + ".managers");
+            createCache(cm, com.simplify.vms.onboard.data.domain.CustomFieldData.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

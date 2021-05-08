@@ -1,0 +1,9 @@
+{
+  "vmsv2DataApp": {
+    "Currency": {
+      "null": "",
+      "USD": "USD",
+      "INR": "INR"
+    }
+  }
+}

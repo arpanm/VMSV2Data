@@ -1,0 +1,35 @@
+{
+  "vmsv2DataApp": {
+    "foundationalDataType": {
+      "home": {
+        "title": "Foundational Data Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foundational Data Type",
+        "createOrEditLabel": "Create or edit a Foundational Data Type",
+        "notFound": "No Foundational Data Types found"
+      },
+      "created": "A new Foundational Data Type is created with identifier {{ param }}",
+      "updated": "A Foundational Data Type is updated with identifier {{ param }}",
+      "deleted": "A Foundational Data Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foundational Data Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Foundational Data Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "requiredInHierarchy": "Required In Hierarchy",
+      "requiredInJobs": "Required In Jobs",
+      "requiredInSow": "Required In Sow",
+      "fileUploadPath": "File Upload Path",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "hierarchy": "Hierarchy"
+    }
+  }
+}

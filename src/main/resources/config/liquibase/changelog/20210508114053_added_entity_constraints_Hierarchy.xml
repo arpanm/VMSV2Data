@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Hierarchy.
+    -->
+    <changeSet id="20210508114053-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="hierarchy"
+                                 constraintName="fk_hierarchy__client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="program"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="hierarchy"
+                                 constraintName="fk_hierarchy__parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hierarchy"/>
+
+        <addForeignKeyConstraint baseColumnNames="hierarchy_id"
+                                 baseTableName="rel_hierarchy__managers"
+                                 constraintName="fk_rel_hierarchy__managers__hierarchy_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hierarchy"/>
+
+        <addForeignKeyConstraint baseColumnNames="managers_id"
+                                 baseTableName="rel_hierarchy__managers"
+                                 constraintName="fk_rel_hierarchy__managers__managers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="program_user"/>
+    </changeSet>
+</databaseChangeLog>

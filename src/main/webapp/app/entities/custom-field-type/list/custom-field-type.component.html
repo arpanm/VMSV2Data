@@ -1,0 +1,119 @@
+<div>
+  <h2 id="page-heading" data-cy="CustomFieldTypeHeading">
+    <span jhiTranslate="vmsv2DataApp.customFieldType.home.title">Custom Field Types</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.customFieldType.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-custom-field-type"
+        [routerLink]="['/custom-field-type/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.customFieldType.home.createLabel"> Create a new Custom Field Type </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="customFieldTypes?.length === 0">
+    <span jhiTranslate="vmsv2DataApp.customFieldType.home.notFound">No customFieldTypes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="customFieldTypes && customFieldTypes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="code">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.code">Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="foundationalDataType.id">
+            <span jhiTranslate="vmsv2DataApp.customFieldType.foundationalDataType">Foundational Data Type</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let customFieldType of customFieldTypes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/custom-field-type', customFieldType.id, 'view']">{{ customFieldType.id }}</a>
+          </td>
+          <td>{{ customFieldType.name }}</td>
+          <td>{{ customFieldType.code }}</td>
+          <td>{{ customFieldType.description }}</td>
+          <td>{{ customFieldType.isActive }}</td>
+          <td>{{ customFieldType.createdBy }}</td>
+          <td>{{ customFieldType.createdAt | formatMediumDate }}</td>
+          <td>{{ customFieldType.updatedBy }}</td>
+          <td>{{ customFieldType.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="customFieldType.foundationalDataType">
+              <a [routerLink]="['/foundational-data-type', customFieldType.foundationalDataType?.id, 'view']">{{
+                customFieldType.foundationalDataType?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/custom-field-type', customFieldType.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/custom-field-type', customFieldType.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(customFieldType)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

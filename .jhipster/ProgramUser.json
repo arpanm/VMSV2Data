@@ -1,0 +1,96 @@
+{
+  "name": "ProgramUser",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sourceId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "clientDesignation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "simplifyRole",
+      "fieldType": "Role",
+      "fieldValues": "Administrator,Hiring_Manager,Finance_Manager,Timesheet_Approver,Job_Approver"
+    },
+    {
+      "fieldName": "fileUploadPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "programUser",
+      "otherEntityRelationshipName": "programUser",
+      "relationshipName": "manager"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "workLocation",
+      "otherEntityRelationshipName": "programUser",
+      "relationshipName": "location"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "hierarchy",
+      "otherEntityRelationshipName": "managers",
+      "relationshipName": "hierarchy",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "foundationalData",
+      "otherEntityRelationshipName": "managers",
+      "relationshipName": "foundationalData",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "program_user",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210508114054"
+}
