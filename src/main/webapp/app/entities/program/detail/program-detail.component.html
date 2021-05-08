@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="program">
+      <h2 data-cy="programDetailsHeading"><span jhiTranslate="vmsv2DataApp.program.detail.title">Program</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ program.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.name">Name</span></dt>
+        <dd>
+          <span>{{ program.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.email">Email</span></dt>
+        <dd>
+          <span>{{ program.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.phoneNumber">Phone Number</span></dt>
+        <dd>
+          <span>{{ program.phoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.deploymentRegion">Deployment Region</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Region.' + program.deploymentRegion }}">{{ program.deploymentRegion }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.subdomain">Subdomain</span></dt>
+        <dd>
+          <span>{{ program.subdomain }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.implementationManagerEmail">Implementation Manager Email</span></dt>
+        <dd>
+          <span>{{ program.implementationManagerEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ program.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ program.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ program.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ program.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.program.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ program.updatedAt | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/program', program.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

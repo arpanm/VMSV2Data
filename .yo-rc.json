@@ -5,7 +5,7 @@
     "baseName": "VMSV2Data",
     "packageName": "com.simplify.vms.onboard.data",
     "packageFolder": "com/simplify/vms/onboard/data",
-    "serverPort": 8080,
+    "serverPort": "8080",
     "serviceDiscoveryType": false,
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
@@ -23,7 +23,7 @@
     "testFrameworks": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en", "bn", "es"],
+    "languages": ["en"],
     "clientFramework": "angularX",
     "jhiPrefix": "jhi",
     "withAdminUi": true,
@@ -42,7 +42,9 @@
     "jwtSecretKey": "Njk0Zjg0MDZjYmRhNGQ2NmQ2Y2NlZDM1MDA1MjRiODY1MjBjZTJlOTZkMjNjOThlNmYwNzgyNTUzZGY4YzAwZmUyN2ZiMDJhYjY0ODJiYmRmODAxN2RhYTM2ODNmYzU3MTQ1ODU4YzE5ZjU2YTYwNWRhZGU3Y2I4ZDIzMTBmMTA=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["Program"],
+    "lastLiquibaseTimestamp": 1620473789000
   },
   "git-provider": "GitHub",
   "git-company": "arpanmukh",

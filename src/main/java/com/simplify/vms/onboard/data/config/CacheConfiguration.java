@@ -48,6 +48,7 @@ public class CacheConfiguration {
             createCache(cm, com.simplify.vms.onboard.data.domain.User.class.getName());
             createCache(cm, com.simplify.vms.onboard.data.domain.Authority.class.getName());
             createCache(cm, com.simplify.vms.onboard.data.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.simplify.vms.onboard.data.domain.Program.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
