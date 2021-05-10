@@ -7,6 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IProgramUser, ProgramUser } from '../program-user.model';
 import { ProgramUserService } from '../service/program-user.service';
+import { IProgram } from 'app/entities/program/program.model';
+import { ProgramService } from 'app/entities/program/service/program.service';
 import { IWorkLocation } from 'app/entities/work-location/work-location.model';
 import { WorkLocationService } from 'app/entities/work-location/service/work-location.service';
 
@@ -17,6 +19,7 @@ import { WorkLocationService } from 'app/entities/work-location/service/work-loc
 export class ProgramUserUpdateComponent implements OnInit {
   isSaving = false;
 
+  programsSharedCollection: IProgram[] = [];
   programUsersSharedCollection: IProgramUser[] = [];
   workLocationsSharedCollection: IWorkLocation[] = [];
 
@@ -35,12 +38,14 @@ export class ProgramUserUpdateComponent implements OnInit {
     createdAt: [],
     updatedBy: [],
     updatedAt: [],
+    client: [],
     manager: [],
     location: [],
   });
 
   constructor(
     protected programUserService: ProgramUserService,
+    protected programService: ProgramService,
     protected workLocationService: WorkLocationService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -66,6 +71,10 @@ export class ProgramUserUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.programUserService.create(programUser));
     }
+  }
+
+  trackProgramById(index: number, item: IProgram): number {
+    return item.id!;
   }
 
   trackProgramUserById(index: number, item: IProgramUser): number {
@@ -111,10 +120,12 @@ export class ProgramUserUpdateComponent implements OnInit {
       createdAt: programUser.createdAt,
       updatedBy: programUser.updatedBy,
       updatedAt: programUser.updatedAt,
+      client: programUser.client,
       manager: programUser.manager,
       location: programUser.location,
     });
 
+    this.programsSharedCollection = this.programService.addProgramToCollectionIfMissing(this.programsSharedCollection, programUser.client);
     this.programUsersSharedCollection = this.programUserService.addProgramUserToCollectionIfMissing(
       this.programUsersSharedCollection,
       programUser.manager
@@ -126,6 +137,14 @@ export class ProgramUserUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
+    this.programService
+      .query()
+      .pipe(map((res: HttpResponse<IProgram[]>) => res.body ?? []))
+      .pipe(
+        map((programs: IProgram[]) => this.programService.addProgramToCollectionIfMissing(programs, this.editForm.get('client')!.value))
+      )
+      .subscribe((programs: IProgram[]) => (this.programsSharedCollection = programs));
+
     this.programUserService
       .query()
       .pipe(map((res: HttpResponse<IProgramUser[]>) => res.body ?? []))
@@ -164,6 +183,7 @@ export class ProgramUserUpdateComponent implements OnInit {
       createdAt: this.editForm.get(['createdAt'])!.value,
       updatedBy: this.editForm.get(['updatedBy'])!.value,
       updatedAt: this.editForm.get(['updatedAt'])!.value,
+      client: this.editForm.get(['client'])!.value,
       manager: this.editForm.get(['manager'])!.value,
       location: this.editForm.get(['location'])!.value,
     };

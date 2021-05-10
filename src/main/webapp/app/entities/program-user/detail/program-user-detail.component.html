@@ -66,6 +66,12 @@
         <dd>
           <span>{{ programUser.updatedAt | formatMediumDate }}</span>
         </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.client">Client</span></dt>
+        <dd>
+          <div *ngIf="programUser.client">
+            <a [routerLink]="['/program', programUser.client?.id, 'view']">{{ programUser.client?.id }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="vmsv2DataApp.programUser.manager">Manager</span></dt>
         <dd>
           <div *ngIf="programUser.manager">

@@ -58,6 +58,12 @@
   "relationships": [
     {
       "relationshipType": "many-to-one",
+      "otherEntityName": "program",
+      "otherEntityRelationshipName": "programUser",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "many-to-one",
       "otherEntityName": "programUser",
       "otherEntityRelationshipName": "programUser",
       "relationshipName": "manager"

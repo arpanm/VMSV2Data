@@ -31,6 +31,7 @@
       "createdAt": "Created At",
       "updatedBy": "Updated By",
       "updatedAt": "Updated At",
+      "client": "Client",
       "manager": "Manager",
       "location": "Location",
       "hierarchy": "Hierarchy",

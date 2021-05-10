@@ -53,6 +53,9 @@
             <column name="updated_at" type="date">
                 <constraints nullable="true" />
             </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="manager_id" type="bigint">
                 <constraints nullable="true" />
             </column>

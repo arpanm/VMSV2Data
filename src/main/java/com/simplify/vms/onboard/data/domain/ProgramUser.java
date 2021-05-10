@@ -65,7 +65,10 @@ public class ProgramUser implements Serializable {
     private LocalDate updatedAt;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "manager", "location", "hierarchies", "foundationalData" }, allowSetters = true)
+    private Program client;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "client", "manager", "location", "hierarchies", "foundationalData" }, allowSetters = true)
     private ProgramUser manager;
 
     @ManyToOne
@@ -263,6 +266,19 @@ public class ProgramUser implements Serializable {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Program getClient() {
+        return this.client;
+    }
+
+    public ProgramUser client(Program program) {
+        this.setClient(program);
+        return this;
+    }
+
+    public void setClient(Program program) {
+        this.client = program;
     }
 
     public ProgramUser getManager() {
