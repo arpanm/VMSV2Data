@@ -1,0 +1,139 @@
+<div>
+  <h2 id="page-heading" data-cy="JobTemplateHeading">
+    <span jhiTranslate="vmsv2DataApp.jobTemplate.home.title">Job Templates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.jobTemplate.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-job-template"
+        [routerLink]="['/job-template/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.jobTemplate.home.createLabel"> Create a new Job Template </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="jobTemplates?.length === 0">
+    <span jhiTranslate="vmsv2DataApp.jobTemplate.home.notFound">No jobTemplates found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="jobTemplates && jobTemplates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="templateTitle">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.templateTitle">Template Title</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="jobLevel">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.jobLevel">Job Level</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDescriptionEditable">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.isDescriptionEditable">Is Description Editable</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="distributionType">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.distributionType">Distribution Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="distributionLimit">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.distributionLimit">Distribution Limit</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="category.id">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hierarchy.id">
+            <span jhiTranslate="vmsv2DataApp.jobTemplate.hierarchy">Hierarchy</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let jobTemplate of jobTemplates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/job-template', jobTemplate.id, 'view']">{{ jobTemplate.id }}</a>
+          </td>
+          <td>{{ jobTemplate.templateTitle }}</td>
+          <td>{{ jobTemplate.description }}</td>
+          <td>{{ jobTemplate.jobLevel }}</td>
+          <td>{{ jobTemplate.isDescriptionEditable }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.JobTemplateDistributionType.' + jobTemplate.distributionType }}">
+            {{ jobTemplate.distributionType }}
+          </td>
+          <td>{{ jobTemplate.distributionLimit }}</td>
+          <td>{{ jobTemplate.isActive }}</td>
+          <td>{{ jobTemplate.createdBy }}</td>
+          <td>{{ jobTemplate.createdAt | formatMediumDate }}</td>
+          <td>{{ jobTemplate.updatedBy }}</td>
+          <td>{{ jobTemplate.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="jobTemplate.category">
+              <a [routerLink]="['/job-category-title', jobTemplate.category?.id, 'view']">{{ jobTemplate.category?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="jobTemplate.hierarchy">
+              <a [routerLink]="['/hierarchy', jobTemplate.hierarchy?.id, 'view']">{{ jobTemplate.hierarchy?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/job-template', jobTemplate.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/job-template', jobTemplate.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(jobTemplate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "vmsv2DataApp": {
+    "program": {
+      "home": {
+        "title": "Programs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Program",
+        "createOrEditLabel": "Create or edit a Program",
+        "notFound": "No Programs found"
+      },
+      "created": "A new Program is created with identifier {{ param }}",
+      "updated": "A Program is updated with identifier {{ param }}",
+      "deleted": "A Program is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Program {{ id }}?"
+      },
+      "detail": {
+        "title": "Program"
+      },
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "deploymentRegion": "Deployment Region",
+      "subdomain": "Subdomain",
+      "implementationManagerEmail": "Implementation Manager Email",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At"
+    }
+  }
+}

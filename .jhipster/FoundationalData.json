@@ -1,0 +1,62 @@
+{
+  "name": "FoundationalData",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "foundationalDataType",
+      "otherEntityRelationshipName": "foundationalData",
+      "relationshipName": "foundationalDataType"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "programUser",
+      "otherEntityRelationshipName": "foundationalData",
+      "relationshipName": "managers",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "foundational_data",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081423"
+}

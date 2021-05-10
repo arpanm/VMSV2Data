@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="foundationalData">
+      <h2 data-cy="foundationalDataDetailsHeading">
+        <span jhiTranslate="vmsv2DataApp.foundationalData.detail.title">Foundational Data</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ foundationalData.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.name">Name</span></dt>
+        <dd>
+          <span>{{ foundationalData.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.code">Code</span></dt>
+        <dd>
+          <span>{{ foundationalData.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.description">Description</span></dt>
+        <dd>
+          <span>{{ foundationalData.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ foundationalData.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ foundationalData.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ foundationalData.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ foundationalData.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ foundationalData.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.foundationalDataType">Foundational Data Type</span></dt>
+        <dd>
+          <div *ngIf="foundationalData.foundationalDataType">
+            <a [routerLink]="['/foundational-data-type', foundationalData.foundationalDataType?.id, 'view']">{{
+              foundationalData.foundationalDataType?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalData.managers">Managers</span></dt>
+        <dd>
+          <span *ngFor="let managers of foundationalData.managers; let last = last">
+            <a [routerLink]="['/program-user', managers?.id, 'view']">{{ managers.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foundational-data', foundationalData.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

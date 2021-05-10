@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jobTemplateRateCard">
+      <h2 data-cy="jobTemplateRateCardDetailsHeading">
+        <span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.detail.title">Job Template Rate Card</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.currency">Currency</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Currency.' + jobTemplateRateCard.currency }}">{{ jobTemplateRateCard.currency }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.hourlyMin">Hourly Min</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.hourlyMin }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.hourlyMax">Hourly Max</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.hourlyMax }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.dailyMin">Daily Min</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.dailyMin }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.dailyMax">Daily Max</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.dailyMax }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.weeklyMin">Weekly Min</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.weeklyMin }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.weeklyMax">Weekly Max</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.weeklyMax }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.monthlyMin">Monthly Min</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.monthlyMin }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.monthlyMax">Monthly Max</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.monthlyMax }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.yearlyMin">Yearly Min</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.yearlyMin }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.yearlyMax">Yearly Max</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.yearlyMax }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ jobTemplateRateCard.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.template">Template</span></dt>
+        <dd>
+          <div *ngIf="jobTemplateRateCard.template">
+            <a [routerLink]="['/job-template', jobTemplateRateCard.template?.id, 'view']">{{ jobTemplateRateCard.template?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplateRateCard.category">Category</span></dt>
+        <dd>
+          <div *ngIf="jobTemplateRateCard.category">
+            <a [routerLink]="['/job-category-title', jobTemplateRateCard.category?.id, 'view']">{{ jobTemplateRateCard.category?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job-template-rate-card', jobTemplateRateCard.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

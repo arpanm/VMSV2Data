@@ -1,0 +1,94 @@
+{
+  "name": "JobTemplateRateCard",
+  "fields": [
+    {
+      "fieldName": "currency",
+      "fieldType": "Currency",
+      "fieldValues": "USD,INR"
+    },
+    {
+      "fieldName": "hourlyMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "hourlyMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dailyMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dailyMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "weeklyMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "weeklyMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "monthlyMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "monthlyMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "yearlyMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "yearlyMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobTemplate",
+      "otherEntityRelationshipName": "jobTemplateRateCard",
+      "relationshipName": "template"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobCategoryTitle",
+      "otherEntityRelationshipName": "jobTemplateRateCard",
+      "relationshipName": "category"
+    }
+  ],
+  "entityTableName": "job_template_rate_card",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081427"
+}

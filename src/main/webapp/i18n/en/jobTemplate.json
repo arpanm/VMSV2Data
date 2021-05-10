@@ -1,0 +1,36 @@
+{
+  "vmsv2DataApp": {
+    "jobTemplate": {
+      "home": {
+        "title": "Job Templates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Template",
+        "createOrEditLabel": "Create or edit a Job Template",
+        "notFound": "No Job Templates found"
+      },
+      "created": "A new Job Template is created with identifier {{ param }}",
+      "updated": "A Job Template is updated with identifier {{ param }}",
+      "deleted": "A Job Template is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Template {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Template"
+      },
+      "id": "ID",
+      "templateTitle": "Template Title",
+      "description": "Description",
+      "jobLevel": "Job Level",
+      "isDescriptionEditable": "Is Description Editable",
+      "distributionType": "Distribution Type",
+      "distributionLimit": "Distribution Limit",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "category": "Category",
+      "hierarchy": "Hierarchy"
+    }
+  }
+}

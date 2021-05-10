@@ -1,0 +1,215 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-work-location-heading"
+        data-cy="WorkLocationCreateUpdateHeading"
+        jhiTranslate="vmsv2DataApp.workLocation.home.createOrEditLabel"
+      >
+        Create or edit a Work Location
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.country" for="field_country">Country</label>
+          <select class="form-control" name="country" formControlName="country" id="field_country" data-cy="country">
+            <option [ngValue]="null">{{ 'vmsv2DataApp.Country.null' | translate }}</option>
+            <option value="US">{{ 'vmsv2DataApp.Country.US' | translate }}</option>
+            <option value="India">{{ 'vmsv2DataApp.Country.India' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.state" for="field_state">State</label>
+          <select class="form-control" name="state" formControlName="state" id="field_state" data-cy="state">
+            <option [ngValue]="null">{{ 'vmsv2DataApp.State.null' | translate }}</option>
+            <option value="Alabama">{{ 'vmsv2DataApp.State.Alabama' | translate }}</option>
+            <option value="Alaska">{{ 'vmsv2DataApp.State.Alaska' | translate }}</option>
+            <option value="Arizona">{{ 'vmsv2DataApp.State.Arizona' | translate }}</option>
+            <option value="Arkansas">{{ 'vmsv2DataApp.State.Arkansas' | translate }}</option>
+            <option value="California">{{ 'vmsv2DataApp.State.California' | translate }}</option>
+            <option value="Colorado">{{ 'vmsv2DataApp.State.Colorado' | translate }}</option>
+            <option value="Connecticut">{{ 'vmsv2DataApp.State.Connecticut' | translate }}</option>
+            <option value="Delaware">{{ 'vmsv2DataApp.State.Delaware' | translate }}</option>
+            <option value="Florida">{{ 'vmsv2DataApp.State.Florida' | translate }}</option>
+            <option value="Georgia">{{ 'vmsv2DataApp.State.Georgia' | translate }}</option>
+            <option value="Hawaii">{{ 'vmsv2DataApp.State.Hawaii' | translate }}</option>
+            <option value="Idaho">{{ 'vmsv2DataApp.State.Idaho' | translate }}</option>
+            <option value="Illinois">{{ 'vmsv2DataApp.State.Illinois' | translate }}</option>
+            <option value="Indiana">{{ 'vmsv2DataApp.State.Indiana' | translate }}</option>
+            <option value="Iowa">{{ 'vmsv2DataApp.State.Iowa' | translate }}</option>
+            <option value="Kansas">{{ 'vmsv2DataApp.State.Kansas' | translate }}</option>
+            <option value="Kentucky">{{ 'vmsv2DataApp.State.Kentucky' | translate }}</option>
+            <option value="Louisiana">{{ 'vmsv2DataApp.State.Louisiana' | translate }}</option>
+            <option value="Maine">{{ 'vmsv2DataApp.State.Maine' | translate }}</option>
+            <option value="Maryland">{{ 'vmsv2DataApp.State.Maryland' | translate }}</option>
+            <option value="Massachusetts">{{ 'vmsv2DataApp.State.Massachusetts' | translate }}</option>
+            <option value="Michigan">{{ 'vmsv2DataApp.State.Michigan' | translate }}</option>
+            <option value="Minnesota">{{ 'vmsv2DataApp.State.Minnesota' | translate }}</option>
+            <option value="Mississippi">{{ 'vmsv2DataApp.State.Mississippi' | translate }}</option>
+            <option value="Missouri">{{ 'vmsv2DataApp.State.Missouri' | translate }}</option>
+            <option value="Montana">{{ 'vmsv2DataApp.State.Montana' | translate }}</option>
+            <option value="Nebraska">{{ 'vmsv2DataApp.State.Nebraska' | translate }}</option>
+            <option value="Nevada">{{ 'vmsv2DataApp.State.Nevada' | translate }}</option>
+            <option value="New_Hampshire">{{ 'vmsv2DataApp.State.New_Hampshire' | translate }}</option>
+            <option value="New_Jersey">{{ 'vmsv2DataApp.State.New_Jersey' | translate }}</option>
+            <option value="New_Mexico">{{ 'vmsv2DataApp.State.New_Mexico' | translate }}</option>
+            <option value="New_York">{{ 'vmsv2DataApp.State.New_York' | translate }}</option>
+            <option value="North_Carolina">{{ 'vmsv2DataApp.State.North_Carolina' | translate }}</option>
+            <option value="North_Dakota">{{ 'vmsv2DataApp.State.North_Dakota' | translate }}</option>
+            <option value="Ohio">{{ 'vmsv2DataApp.State.Ohio' | translate }}</option>
+            <option value="Oklahoma">{{ 'vmsv2DataApp.State.Oklahoma' | translate }}</option>
+            <option value="Oregon">{{ 'vmsv2DataApp.State.Oregon' | translate }}</option>
+            <option value="Pennsylvania">{{ 'vmsv2DataApp.State.Pennsylvania' | translate }}</option>
+            <option value="Rhode_Island">{{ 'vmsv2DataApp.State.Rhode_Island' | translate }}</option>
+            <option value="South_Carolina">{{ 'vmsv2DataApp.State.South_Carolina' | translate }}</option>
+            <option value="South_Dakota">{{ 'vmsv2DataApp.State.South_Dakota' | translate }}</option>
+            <option value="Tennessee">{{ 'vmsv2DataApp.State.Tennessee' | translate }}</option>
+            <option value="Texas">{{ 'vmsv2DataApp.State.Texas' | translate }}</option>
+            <option value="Utah">{{ 'vmsv2DataApp.State.Utah' | translate }}</option>
+            <option value="Vermont">{{ 'vmsv2DataApp.State.Vermont' | translate }}</option>
+            <option value="Virginia">{{ 'vmsv2DataApp.State.Virginia' | translate }}</option>
+            <option value="Washington">{{ 'vmsv2DataApp.State.Washington' | translate }}</option>
+            <option value="West_Virginia">{{ 'vmsv2DataApp.State.West_Virginia' | translate }}</option>
+            <option value="Wisconsin">{{ 'vmsv2DataApp.State.Wisconsin' | translate }}</option>
+            <option value="Wyoming">{{ 'vmsv2DataApp.State.Wyoming' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.address" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.fileUploadPath" for="field_fileUploadPath"
+            >File Upload Path</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="fileUploadPath"
+            id="field_fileUploadPath"
+            data-cy="fileUploadPath"
+            formControlName="fileUploadPath"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.updatedBy" for="field_updatedBy">Updated By</label>
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.workLocation.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="programOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : programOption"
+              *ngFor="let programOption of programsSharedCollection; trackBy: trackProgramById"
+            >
+              {{ programOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

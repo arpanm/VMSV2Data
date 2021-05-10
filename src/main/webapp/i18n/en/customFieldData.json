@@ -1,0 +1,31 @@
+{
+  "vmsv2DataApp": {
+    "customFieldData": {
+      "home": {
+        "title": "Custom Field Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Custom Field Data",
+        "createOrEditLabel": "Create or edit a Custom Field Data",
+        "notFound": "No Custom Field Data found"
+      },
+      "created": "A new Custom Field Data is created with identifier {{ param }}",
+      "updated": "A Custom Field Data is updated with identifier {{ param }}",
+      "deleted": "A Custom Field Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Custom Field Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Custom Field Data"
+      },
+      "id": "ID",
+      "value": "Value",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "foundationalData": "Foundational Data",
+      "customFieldType": "Custom Field Type"
+    }
+  }
+}

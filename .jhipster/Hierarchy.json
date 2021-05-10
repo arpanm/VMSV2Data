@@ -1,0 +1,128 @@
+{
+  "name": "Hierarchy",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "workFlow",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preferredLanguage",
+      "fieldType": "Language",
+      "fieldValues": "English,Spanish,Hindi"
+    },
+    {
+      "fieldName": "preferredCurrency",
+      "fieldType": "Currency",
+      "fieldValues": "USD,INR"
+    },
+    {
+      "fieldName": "primaryCountry",
+      "fieldType": "Country",
+      "fieldValues": "US,India"
+    },
+    {
+      "fieldName": "primaryAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryCountry",
+      "fieldType": "Country",
+      "fieldValues": "US,India"
+    },
+    {
+      "fieldName": "secondaryAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primaryContactName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primaryContactDesignation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primaryContactEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primaryContactPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryContactName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryContactDesignation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryContactEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secondaryContactPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileUploadPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "program",
+      "otherEntityRelationshipName": "hierarchy",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "hierarchy",
+      "otherEntityRelationshipName": "hierarchy",
+      "relationshipName": "parent"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "programUser",
+      "otherEntityRelationshipName": "hierarchy",
+      "relationshipName": "managers",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "hierarchy",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081418"
+}

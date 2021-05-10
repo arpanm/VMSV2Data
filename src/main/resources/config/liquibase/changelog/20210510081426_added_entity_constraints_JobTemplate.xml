@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity JobTemplate.
+    -->
+    <changeSet id="20210510081426-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="job_template"
+                                 constraintName="fk_job_template__category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_category_title"/>
+
+        <addForeignKeyConstraint baseColumnNames="hierarchy_id"
+                                 baseTableName="job_template"
+                                 constraintName="fk_job_template__hierarchy_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hierarchy"/>
+    </changeSet>
+</databaseChangeLog>

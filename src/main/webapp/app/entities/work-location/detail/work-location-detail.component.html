@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="workLocation">
+      <h2 data-cy="workLocationDetailsHeading"><span jhiTranslate="vmsv2DataApp.workLocation.detail.title">Work Location</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ workLocation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.code">Code</span></dt>
+        <dd>
+          <span>{{ workLocation.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.name">Name</span></dt>
+        <dd>
+          <span>{{ workLocation.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.description">Description</span></dt>
+        <dd>
+          <span>{{ workLocation.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.country">Country</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Country.' + workLocation.country }}">{{ workLocation.country }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.State.' + workLocation.state }}">{{ workLocation.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.address">Address</span></dt>
+        <dd>
+          <span>{{ workLocation.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.fileUploadPath">File Upload Path</span></dt>
+        <dd>
+          <span>{{ workLocation.fileUploadPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ workLocation.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ workLocation.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ workLocation.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ workLocation.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ workLocation.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.workLocation.client">Client</span></dt>
+        <dd>
+          <div *ngIf="workLocation.client">
+            <a [routerLink]="['/program', workLocation.client?.id, 'view']">{{ workLocation.client?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/work-location', workLocation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

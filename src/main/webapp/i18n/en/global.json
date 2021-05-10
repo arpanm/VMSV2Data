@@ -7,6 +7,17 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "program": "Program",
+        "hierarchy": "Hierarchy",
+        "programUser": "Program User",
+        "workLocation": "Work Location",
+        "foundationalDataType": "Foundational Data Type",
+        "customFieldType": "Custom Field Type",
+        "foundationalData": "Foundational Data",
+        "customFieldData": "Custom Field Data",
+        "jobCategoryTitle": "Job Category Title",
+        "jobTemplate": "Job Template",
+        "jobTemplateRateCard": "Job Template Rate Card",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

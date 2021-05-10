@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity JobTemplateRateCard.
+    -->
+    <changeSet id="20210510081427-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="template_id"
+                                 baseTableName="job_template_rate_card"
+                                 constraintName="fk_job_template_rate_card__template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_template"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="job_template_rate_card"
+                                 constraintName="fk_job_template_rate_card__category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_category_title"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,41 @@
+{
+  "vmsv2DataApp": {
+    "jobTemplateRateCard": {
+      "home": {
+        "title": "Job Template Rate Cards",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Template Rate Card",
+        "createOrEditLabel": "Create or edit a Job Template Rate Card",
+        "notFound": "No Job Template Rate Cards found"
+      },
+      "created": "A new Job Template Rate Card is created with identifier {{ param }}",
+      "updated": "A Job Template Rate Card is updated with identifier {{ param }}",
+      "deleted": "A Job Template Rate Card is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Template Rate Card {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Template Rate Card"
+      },
+      "id": "ID",
+      "currency": "Currency",
+      "hourlyMin": "Hourly Min",
+      "hourlyMax": "Hourly Max",
+      "dailyMin": "Daily Min",
+      "dailyMax": "Daily Max",
+      "weeklyMin": "Weekly Min",
+      "weeklyMax": "Weekly Max",
+      "monthlyMin": "Monthly Min",
+      "monthlyMax": "Monthly Max",
+      "yearlyMin": "Yearly Min",
+      "yearlyMax": "Yearly Max",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "template": "Template",
+      "category": "Category"
+    }
+  }
+}
