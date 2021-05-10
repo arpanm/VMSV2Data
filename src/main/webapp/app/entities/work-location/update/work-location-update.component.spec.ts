@@ -42,10 +42,10 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Program query and add missing value', () => {
         const workLocation: IWorkLocation = { id: 456 };
-        const client: IProgram = { id: 98881 };
+        const client: IProgram = { id: 61085 };
         workLocation.client = client;
 
-        const programCollection: IProgram[] = [{ id: 87739 }];
+        const programCollection: IProgram[] = [{ id: 26407 }];
         spyOn(programService, 'query').and.returnValue(of(new HttpResponse({ body: programCollection })));
         const additionalPrograms = [client];
         const expectedCollection: IProgram[] = [...additionalPrograms, ...programCollection];
@@ -61,7 +61,7 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const workLocation: IWorkLocation = { id: 456 };
-        const client: IProgram = { id: 71977 };
+        const client: IProgram = { id: 24124 };
         workLocation.client = client;
 
         activatedRoute.data = of({ workLocation });

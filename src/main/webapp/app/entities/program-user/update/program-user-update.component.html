@@ -149,6 +149,19 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.programUser.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="programOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : programOption"
+              *ngFor="let programOption of programsSharedCollection; trackBy: trackProgramById"
+            >
+              {{ programOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label class="form-control-label" jhiTranslate="vmsv2DataApp.programUser.manager" for="field_manager">Manager</label>
           <select class="form-control" id="field_manager" data-cy="manager" name="manager" formControlName="manager">
             <option [ngValue]="null"></option>

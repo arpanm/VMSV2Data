@@ -72,6 +72,9 @@
           <th scope="col" jhiSortBy="updatedAt">
             <span jhiTranslate="vmsv2DataApp.programUser.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="client.id">
+            <span jhiTranslate="vmsv2DataApp.programUser.client">Client</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="manager.id">
             <span jhiTranslate="vmsv2DataApp.programUser.manager">Manager</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -99,6 +102,11 @@
           <td>{{ programUser.createdAt | formatMediumDate }}</td>
           <td>{{ programUser.updatedBy }}</td>
           <td>{{ programUser.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="programUser.client">
+              <a [routerLink]="['/program', programUser.client?.id, 'view']">{{ programUser.client?.id }}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="programUser.manager">
               <a [routerLink]="['/program-user', programUser.manager?.id, 'view']">{{ programUser.manager?.id }}</a>

@@ -110,7 +110,7 @@ public class Hierarchy implements Serializable {
         joinColumns = @JoinColumn(name = "hierarchy_id"),
         inverseJoinColumns = @JoinColumn(name = "managers_id")
     )
-    @JsonIgnoreProperties(value = { "manager", "location", "hierarchies", "foundationalData" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "client", "manager", "location", "hierarchies", "foundationalData" }, allowSetters = true)
     private Set<ProgramUser> managers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

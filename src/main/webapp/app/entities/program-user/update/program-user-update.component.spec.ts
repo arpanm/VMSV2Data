@@ -9,6 +9,8 @@ import { of, Subject } from 'rxjs';
 
 import { ProgramUserService } from '../service/program-user.service';
 import { IProgramUser, ProgramUser } from '../program-user.model';
+import { IProgram } from 'app/entities/program/program.model';
+import { ProgramService } from 'app/entities/program/service/program.service';
 import { IWorkLocation } from 'app/entities/work-location/work-location.model';
 import { WorkLocationService } from 'app/entities/work-location/service/work-location.service';
 
@@ -20,6 +22,7 @@ describe('Component Tests', () => {
     let fixture: ComponentFixture<ProgramUserUpdateComponent>;
     let activatedRoute: ActivatedRoute;
     let programUserService: ProgramUserService;
+    let programService: ProgramService;
     let workLocationService: WorkLocationService;
 
     beforeEach(() => {
@@ -34,12 +37,32 @@ describe('Component Tests', () => {
       fixture = TestBed.createComponent(ProgramUserUpdateComponent);
       activatedRoute = TestBed.inject(ActivatedRoute);
       programUserService = TestBed.inject(ProgramUserService);
+      programService = TestBed.inject(ProgramService);
       workLocationService = TestBed.inject(WorkLocationService);
 
       comp = fixture.componentInstance;
     });
 
     describe('ngOnInit', () => {
+      it('Should call Program query and add missing value', () => {
+        const programUser: IProgramUser = { id: 456 };
+        const client: IProgram = { id: 98881 };
+        programUser.client = client;
+
+        const programCollection: IProgram[] = [{ id: 87739 }];
+        spyOn(programService, 'query').and.returnValue(of(new HttpResponse({ body: programCollection })));
+        const additionalPrograms = [client];
+        const expectedCollection: IProgram[] = [...additionalPrograms, ...programCollection];
+        spyOn(programService, 'addProgramToCollectionIfMissing').and.returnValue(expectedCollection);
+
+        activatedRoute.data = of({ programUser });
+        comp.ngOnInit();
+
+        expect(programService.query).toHaveBeenCalled();
+        expect(programService.addProgramToCollectionIfMissing).toHaveBeenCalledWith(programCollection, ...additionalPrograms);
+        expect(comp.programsSharedCollection).toEqual(expectedCollection);
+      });
+
       it('Should call ProgramUser query and add missing value', () => {
         const programUser: IProgramUser = { id: 456 };
         const manager: IProgramUser = { id: 93396 };
@@ -86,6 +109,8 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const programUser: IProgramUser = { id: 456 };
+        const client: IProgram = { id: 71977 };
+        programUser.client = client;
         const manager: IProgramUser = { id: 11303 };
         programUser.manager = manager;
         const location: IWorkLocation = { id: 25375 };
@@ -95,6 +120,7 @@ describe('Component Tests', () => {
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(programUser));
+        expect(comp.programsSharedCollection).toContain(client);
         expect(comp.programUsersSharedCollection).toContain(manager);
         expect(comp.workLocationsSharedCollection).toContain(location);
       });
@@ -165,6 +191,14 @@ describe('Component Tests', () => {
     });
 
     describe('Tracking relationships identifiers', () => {
+      describe('trackProgramById', () => {
+        it('Should return tracked Program primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackProgramById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
+      });
+
       describe('trackProgramUserById', () => {
         it('Should return tracked ProgramUser primary key', () => {
           const entity = { id: 123 };

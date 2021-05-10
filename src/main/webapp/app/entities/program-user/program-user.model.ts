@@ -1,4 +1,5 @@
 import * as dayjs from 'dayjs';
+import { IProgram } from 'app/entities/program/program.model';
 import { IWorkLocation } from 'app/entities/work-location/work-location.model';
 import { IHierarchy } from 'app/entities/hierarchy/hierarchy.model';
 import { IFoundationalData } from 'app/entities/foundational-data/foundational-data.model';
@@ -19,6 +20,7 @@ export interface IProgramUser {
   createdAt?: dayjs.Dayjs | null;
   updatedBy?: string | null;
   updatedAt?: dayjs.Dayjs | null;
+  client?: IProgram | null;
   manager?: IProgramUser | null;
   location?: IWorkLocation | null;
   hierarchies?: IHierarchy[] | null;
@@ -41,6 +43,7 @@ export class ProgramUser implements IProgramUser {
     public createdAt?: dayjs.Dayjs | null,
     public updatedBy?: string | null,
     public updatedAt?: dayjs.Dayjs | null,
+    public client?: IProgram | null,
     public manager?: IProgramUser | null,
     public location?: IWorkLocation | null,
     public hierarchies?: IHierarchy[] | null,
