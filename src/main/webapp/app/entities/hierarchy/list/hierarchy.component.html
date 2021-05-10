@@ -1,0 +1,180 @@
+<div>
+  <h2 id="page-heading" data-cy="HierarchyHeading">
+    <span jhiTranslate="vmsv2DataApp.hierarchy.home.title">Hierarchies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.hierarchy.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-hierarchy"
+        [routerLink]="['/hierarchy/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.hierarchy.home.createLabel"> Create a new Hierarchy </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="hierarchies?.length === 0">
+    <span jhiTranslate="vmsv2DataApp.hierarchy.home.notFound">No hierarchies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="hierarchies && hierarchies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="vmsv2DataApp.hierarchy.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="workFlow">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.workFlow">Work Flow</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="preferredLanguage">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.preferredLanguage">Preferred Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="preferredCurrency">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.preferredCurrency">Preferred Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryCountry">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryCountry">Primary Country</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryAddress">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryAddress">Primary Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryCountry">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryCountry">Secondary Country</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryAddress">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryAddress">Secondary Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryContactName">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactName">Primary Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryContactDesignation">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactDesignation">Primary Contact Designation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryContactEmail">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactEmail">Primary Contact Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="primaryContactPhone">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactPhone">Primary Contact Phone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryContactName">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactName">Secondary Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryContactDesignation">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactDesignation">Secondary Contact Designation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryContactEmail">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactEmail">Secondary Contact Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="secondaryContactPhone">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactPhone">Secondary Contact Phone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fileUploadPath">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.fileUploadPath">File Upload Path</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="client.id">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.client">Client</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="parent.id">
+            <span jhiTranslate="vmsv2DataApp.hierarchy.parent">Parent</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let hierarchy of hierarchies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/hierarchy', hierarchy.id, 'view']">{{ hierarchy.id }}</a>
+          </td>
+          <td>{{ hierarchy.name }}</td>
+          <td>{{ hierarchy.workFlow }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.Language.' + hierarchy.preferredLanguage }}">{{ hierarchy.preferredLanguage }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.Currency.' + hierarchy.preferredCurrency }}">{{ hierarchy.preferredCurrency }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.Country.' + hierarchy.primaryCountry }}">{{ hierarchy.primaryCountry }}</td>
+          <td>{{ hierarchy.primaryAddress }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.Country.' + hierarchy.secondaryCountry }}">{{ hierarchy.secondaryCountry }}</td>
+          <td>{{ hierarchy.secondaryAddress }}</td>
+          <td>{{ hierarchy.primaryContactName }}</td>
+          <td>{{ hierarchy.primaryContactDesignation }}</td>
+          <td>{{ hierarchy.primaryContactEmail }}</td>
+          <td>{{ hierarchy.primaryContactPhone }}</td>
+          <td>{{ hierarchy.secondaryContactName }}</td>
+          <td>{{ hierarchy.secondaryContactDesignation }}</td>
+          <td>{{ hierarchy.secondaryContactEmail }}</td>
+          <td>{{ hierarchy.secondaryContactPhone }}</td>
+          <td>{{ hierarchy.fileUploadPath }}</td>
+          <td>{{ hierarchy.isActive }}</td>
+          <td>{{ hierarchy.createdBy }}</td>
+          <td>{{ hierarchy.createdAt | formatMediumDate }}</td>
+          <td>{{ hierarchy.updatedBy }}</td>
+          <td>{{ hierarchy.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="hierarchy.client">
+              <a [routerLink]="['/program', hierarchy.client?.id, 'view']">{{ hierarchy.client?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="hierarchy.parent">
+              <a [routerLink]="['/hierarchy', hierarchy.parent?.id, 'view']">{{ hierarchy.parent?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/hierarchy', hierarchy.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/hierarchy', hierarchy.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(hierarchy)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

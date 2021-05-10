@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="foundationalDataType">
+      <h2 data-cy="foundationalDataTypeDetailsHeading">
+        <span jhiTranslate="vmsv2DataApp.foundationalDataType.detail.title">Foundational Data Type</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.name">Name</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.description">Description</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInHierarchy">Required In Hierarchy</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.requiredInHierarchy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInJobs">Required In Jobs</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.requiredInJobs }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInSow">Required In Sow</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.requiredInSow }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.fileUploadPath">File Upload Path</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.fileUploadPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ foundationalDataType.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.foundationalDataType.hierarchy">Hierarchy</span></dt>
+        <dd>
+          <div *ngIf="foundationalDataType.hierarchy">
+            <a [routerLink]="['/hierarchy', foundationalDataType.hierarchy?.id, 'view']">{{ foundationalDataType.hierarchy?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foundational-data-type', foundationalDataType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

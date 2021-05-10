@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-job-category-title-heading"
+        data-cy="JobCategoryTitleCreateUpdateHeading"
+        jhiTranslate="vmsv2DataApp.jobCategoryTitle.home.createOrEditLabel"
+      >
+        Create or edit a Job Category Title
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.category" for="field_category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.title" for="field_title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.updatedBy" for="field_updatedBy">Updated By</label>
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobCategoryTitle.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

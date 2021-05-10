@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jobTemplate">
+      <h2 data-cy="jobTemplateDetailsHeading"><span jhiTranslate="vmsv2DataApp.jobTemplate.detail.title">Job Template</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ jobTemplate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.templateTitle">Template Title</span></dt>
+        <dd>
+          <span>{{ jobTemplate.templateTitle }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.description">Description</span></dt>
+        <dd>
+          <span>{{ jobTemplate.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.jobLevel">Job Level</span></dt>
+        <dd>
+          <span>{{ jobTemplate.jobLevel }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.isDescriptionEditable">Is Description Editable</span></dt>
+        <dd>
+          <span>{{ jobTemplate.isDescriptionEditable }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.distributionType">Distribution Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.JobTemplateDistributionType.' + jobTemplate.distributionType }}">{{
+            jobTemplate.distributionType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.distributionLimit">Distribution Limit</span></dt>
+        <dd>
+          <span>{{ jobTemplate.distributionLimit }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ jobTemplate.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ jobTemplate.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ jobTemplate.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ jobTemplate.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ jobTemplate.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.category">Category</span></dt>
+        <dd>
+          <div *ngIf="jobTemplate.category">
+            <a [routerLink]="['/job-category-title', jobTemplate.category?.id, 'view']">{{ jobTemplate.category?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.jobTemplate.hierarchy">Hierarchy</span></dt>
+        <dd>
+          <div *ngIf="jobTemplate.hierarchy">
+            <a [routerLink]="['/hierarchy', jobTemplate.hierarchy?.id, 'view']">{{ jobTemplate.hierarchy?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job-template', jobTemplate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

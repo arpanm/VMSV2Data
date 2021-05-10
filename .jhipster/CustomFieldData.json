@@ -1,0 +1,53 @@
+{
+  "name": "CustomFieldData",
+  "fields": [
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "foundationalData",
+      "otherEntityRelationshipName": "customFieldData",
+      "relationshipName": "foundationalData"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customFieldType",
+      "otherEntityRelationshipName": "customFieldData",
+      "relationshipName": "customFieldType"
+    }
+  ],
+  "entityTableName": "custom_field_data",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081424"
+}

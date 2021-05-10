@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="ProgramUserHeading">
+    <span jhiTranslate="vmsv2DataApp.programUser.home.title">Program Users</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.programUser.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-program-user"
+        [routerLink]="['/program-user/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vmsv2DataApp.programUser.home.createLabel"> Create a new Program User </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="programUsers?.length === 0">
+    <span jhiTranslate="vmsv2DataApp.programUser.home.notFound">No programUsers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="programUsers && programUsers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="firstName">
+            <span jhiTranslate="vmsv2DataApp.programUser.firstName">First Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <span jhiTranslate="vmsv2DataApp.programUser.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="vmsv2DataApp.programUser.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sourceId">
+            <span jhiTranslate="vmsv2DataApp.programUser.sourceId">Source Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="phoneNumber">
+            <span jhiTranslate="vmsv2DataApp.programUser.phoneNumber">Phone Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="clientDesignation">
+            <span jhiTranslate="vmsv2DataApp.programUser.clientDesignation">Client Designation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="simplifyRole">
+            <span jhiTranslate="vmsv2DataApp.programUser.simplifyRole">Simplify Role</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fileUploadPath">
+            <span jhiTranslate="vmsv2DataApp.programUser.fileUploadPath">File Upload Path</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vmsv2DataApp.programUser.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vmsv2DataApp.programUser.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="vmsv2DataApp.programUser.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="vmsv2DataApp.programUser.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="vmsv2DataApp.programUser.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="manager.id">
+            <span jhiTranslate="vmsv2DataApp.programUser.manager">Manager</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="location.id">
+            <span jhiTranslate="vmsv2DataApp.programUser.location">Location</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let programUser of programUsers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/program-user', programUser.id, 'view']">{{ programUser.id }}</a>
+          </td>
+          <td>{{ programUser.firstName }}</td>
+          <td>{{ programUser.lastName }}</td>
+          <td>{{ programUser.email }}</td>
+          <td>{{ programUser.sourceId }}</td>
+          <td>{{ programUser.phoneNumber }}</td>
+          <td>{{ programUser.clientDesignation }}</td>
+          <td jhiTranslate="{{ 'vmsv2DataApp.Role.' + programUser.simplifyRole }}">{{ programUser.simplifyRole }}</td>
+          <td>{{ programUser.fileUploadPath }}</td>
+          <td>{{ programUser.isActive }}</td>
+          <td>{{ programUser.createdBy }}</td>
+          <td>{{ programUser.createdAt | formatMediumDate }}</td>
+          <td>{{ programUser.updatedBy }}</td>
+          <td>{{ programUser.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="programUser.manager">
+              <a [routerLink]="['/program-user', programUser.manager?.id, 'view']">{{ programUser.manager?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="programUser.location">
+              <a [routerLink]="['/work-location', programUser.location?.id, 'view']">{{ programUser.location?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/program-user', programUser.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/program-user', programUser.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(programUser)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

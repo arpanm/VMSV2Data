@@ -1,0 +1,31 @@
+{
+  "vmsv2DataApp": {
+    "jobCategoryTitle": {
+      "home": {
+        "title": "Job Category Titles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Category Title",
+        "createOrEditLabel": "Create or edit a Job Category Title",
+        "notFound": "No Job Category Titles found"
+      },
+      "created": "A new Job Category Title is created with identifier {{ param }}",
+      "updated": "A Job Category Title is updated with identifier {{ param }}",
+      "deleted": "A Job Category Title is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Category Title {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Category Title"
+      },
+      "id": "ID",
+      "category": "Category",
+      "title": "Title",
+      "code": "Code",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-custom-field-data-heading"
+        data-cy="CustomFieldDataCreateUpdateHeading"
+        jhiTranslate="vmsv2DataApp.customFieldData.home.createOrEditLabel"
+      >
+        Create or edit a Custom Field Data
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.value" for="field_value">Value</label>
+          <input type="text" class="form-control" name="value" id="field_value" data-cy="value" formControlName="value" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.updatedBy" for="field_updatedBy">Updated By</label>
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.foundationalData" for="field_foundationalData"
+            >Foundational Data</label
+          >
+          <select
+            class="form-control"
+            id="field_foundationalData"
+            data-cy="foundationalData"
+            name="foundationalData"
+            formControlName="foundationalData"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                foundationalDataOption.id === editForm.get('foundationalData')!.value?.id
+                  ? editForm.get('foundationalData')!.value
+                  : foundationalDataOption
+              "
+              *ngFor="let foundationalDataOption of foundationalDataSharedCollection; trackBy: trackFoundationalDataById"
+            >
+              {{ foundationalDataOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.customFieldData.customFieldType" for="field_customFieldType"
+            >Custom Field Type</label
+          >
+          <select
+            class="form-control"
+            id="field_customFieldType"
+            data-cy="customFieldType"
+            name="customFieldType"
+            formControlName="customFieldType"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                customFieldTypeOption.id === editForm.get('customFieldType')!.value?.id
+                  ? editForm.get('customFieldType')!.value
+                  : customFieldTypeOption
+              "
+              *ngFor="let customFieldTypeOption of customFieldTypesSharedCollection; trackBy: trackCustomFieldTypeById"
+            >
+              {{ customFieldTypeOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

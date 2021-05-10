@@ -1,0 +1,135 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="hierarchy">
+      <h2 data-cy="hierarchyDetailsHeading"><span jhiTranslate="vmsv2DataApp.hierarchy.detail.title">Hierarchy</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ hierarchy.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.name">Name</span></dt>
+        <dd>
+          <span>{{ hierarchy.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.workFlow">Work Flow</span></dt>
+        <dd>
+          <span>{{ hierarchy.workFlow }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.preferredLanguage">Preferred Language</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Language.' + hierarchy.preferredLanguage }}">{{ hierarchy.preferredLanguage }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.preferredCurrency">Preferred Currency</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Currency.' + hierarchy.preferredCurrency }}">{{ hierarchy.preferredCurrency }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryCountry">Primary Country</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Country.' + hierarchy.primaryCountry }}">{{ hierarchy.primaryCountry }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryAddress">Primary Address</span></dt>
+        <dd>
+          <span>{{ hierarchy.primaryAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryCountry">Secondary Country</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Country.' + hierarchy.secondaryCountry }}">{{ hierarchy.secondaryCountry }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryAddress">Secondary Address</span></dt>
+        <dd>
+          <span>{{ hierarchy.secondaryAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactName">Primary Contact Name</span></dt>
+        <dd>
+          <span>{{ hierarchy.primaryContactName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactDesignation">Primary Contact Designation</span></dt>
+        <dd>
+          <span>{{ hierarchy.primaryContactDesignation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactEmail">Primary Contact Email</span></dt>
+        <dd>
+          <span>{{ hierarchy.primaryContactEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.primaryContactPhone">Primary Contact Phone</span></dt>
+        <dd>
+          <span>{{ hierarchy.primaryContactPhone }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactName">Secondary Contact Name</span></dt>
+        <dd>
+          <span>{{ hierarchy.secondaryContactName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactDesignation">Secondary Contact Designation</span></dt>
+        <dd>
+          <span>{{ hierarchy.secondaryContactDesignation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactEmail">Secondary Contact Email</span></dt>
+        <dd>
+          <span>{{ hierarchy.secondaryContactEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactPhone">Secondary Contact Phone</span></dt>
+        <dd>
+          <span>{{ hierarchy.secondaryContactPhone }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.fileUploadPath">File Upload Path</span></dt>
+        <dd>
+          <span>{{ hierarchy.fileUploadPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ hierarchy.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ hierarchy.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ hierarchy.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ hierarchy.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ hierarchy.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.client">Client</span></dt>
+        <dd>
+          <div *ngIf="hierarchy.client">
+            <a [routerLink]="['/program', hierarchy.client?.id, 'view']">{{ hierarchy.client?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.parent">Parent</span></dt>
+        <dd>
+          <div *ngIf="hierarchy.parent">
+            <a [routerLink]="['/hierarchy', hierarchy.parent?.id, 'view']">{{ hierarchy.parent?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.hierarchy.managers">Managers</span></dt>
+        <dd>
+          <span *ngFor="let managers of hierarchy.managers; let last = last">
+            <a [routerLink]="['/program-user', managers?.id, 'view']">{{ managers.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/hierarchy', hierarchy.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

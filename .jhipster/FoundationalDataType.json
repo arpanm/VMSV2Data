@@ -1,0 +1,67 @@
+{
+  "name": "FoundationalDataType",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "requiredInHierarchy",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "requiredInJobs",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "requiredInSow",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fileUploadPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "hierarchy",
+      "otherEntityRelationshipName": "foundationalDataType",
+      "relationshipName": "hierarchy"
+    }
+  ],
+  "entityTableName": "foundational_data_type",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081421"
+}

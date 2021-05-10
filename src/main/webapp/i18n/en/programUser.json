@@ -1,0 +1,40 @@
+{
+  "vmsv2DataApp": {
+    "programUser": {
+      "home": {
+        "title": "Program Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Program User",
+        "createOrEditLabel": "Create or edit a Program User",
+        "notFound": "No Program Users found"
+      },
+      "created": "A new Program User is created with identifier {{ param }}",
+      "updated": "A Program User is updated with identifier {{ param }}",
+      "deleted": "A Program User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Program User {{ id }}?"
+      },
+      "detail": {
+        "title": "Program User"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "sourceId": "Source Id",
+      "phoneNumber": "Phone Number",
+      "clientDesignation": "Client Designation",
+      "simplifyRole": "Simplify Role",
+      "fileUploadPath": "File Upload Path",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "manager": "Manager",
+      "location": "Location",
+      "hierarchy": "Hierarchy",
+      "foundationalData": "Foundational Data"
+    }
+  }
+}

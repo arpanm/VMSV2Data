@@ -1,0 +1,201 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-job-template-heading"
+        data-cy="JobTemplateCreateUpdateHeading"
+        jhiTranslate="vmsv2DataApp.jobTemplate.home.createOrEditLabel"
+      >
+        Create or edit a Job Template
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.templateTitle" for="field_templateTitle"
+            >Template Title</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="templateTitle"
+            id="field_templateTitle"
+            data-cy="templateTitle"
+            formControlName="templateTitle"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.jobLevel" for="field_jobLevel">Job Level</label>
+          <input type="number" class="form-control" name="jobLevel" id="field_jobLevel" data-cy="jobLevel" formControlName="jobLevel" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.isDescriptionEditable" for="field_isDescriptionEditable"
+            >Is Description Editable</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isDescriptionEditable"
+            id="field_isDescriptionEditable"
+            data-cy="isDescriptionEditable"
+            formControlName="isDescriptionEditable"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.distributionType" for="field_distributionType"
+            >Distribution Type</label
+          >
+          <select
+            class="form-control"
+            name="distributionType"
+            formControlName="distributionType"
+            id="field_distributionType"
+            data-cy="distributionType"
+          >
+            <option [ngValue]="null">{{ 'vmsv2DataApp.JobTemplateDistributionType.null' | translate }}</option>
+            <option value="Automatic_Submit">{{ 'vmsv2DataApp.JobTemplateDistributionType.Automatic_Submit' | translate }}</option>
+            <option value="Automatic_Approval">{{ 'vmsv2DataApp.JobTemplateDistributionType.Automatic_Approval' | translate }}</option>
+            <option value="Tiered">{{ 'vmsv2DataApp.JobTemplateDistributionType.Tiered' | translate }}</option>
+            <option value="Manual">{{ 'vmsv2DataApp.JobTemplateDistributionType.Manual' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.distributionLimit" for="field_distributionLimit"
+            >Distribution Limit</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="distributionLimit"
+            id="field_distributionLimit"
+            data-cy="distributionLimit"
+            formControlName="distributionLimit"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.updatedBy" for="field_updatedBy">Updated By</label>
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.category" for="field_category">Category</label>
+          <select class="form-control" id="field_category" data-cy="category" name="category" formControlName="category">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                jobCategoryTitleOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : jobCategoryTitleOption
+              "
+              *ngFor="let jobCategoryTitleOption of jobCategoryTitlesSharedCollection; trackBy: trackJobCategoryTitleById"
+            >
+              {{ jobCategoryTitleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.jobTemplate.hierarchy" for="field_hierarchy">Hierarchy</label>
+          <select class="form-control" id="field_hierarchy" data-cy="hierarchy" name="hierarchy" formControlName="hierarchy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="hierarchyOption.id === editForm.get('hierarchy')!.value?.id ? editForm.get('hierarchy')!.value : hierarchyOption"
+              *ngFor="let hierarchyOption of hierarchiesSharedCollection; trackBy: trackHierarchyById"
+            >
+              {{ hierarchyOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

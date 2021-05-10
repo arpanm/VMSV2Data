@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customFieldData">
+      <h2 data-cy="customFieldDataDetailsHeading">
+        <span jhiTranslate="vmsv2DataApp.customFieldData.detail.title">Custom Field Data</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ customFieldData.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.value">Value</span></dt>
+        <dd>
+          <span>{{ customFieldData.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ customFieldData.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ customFieldData.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ customFieldData.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ customFieldData.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ customFieldData.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.foundationalData">Foundational Data</span></dt>
+        <dd>
+          <div *ngIf="customFieldData.foundationalData">
+            <a [routerLink]="['/foundational-data', customFieldData.foundationalData?.id, 'view']">{{
+              customFieldData.foundationalData?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.customFieldData.customFieldType">Custom Field Type</span></dt>
+        <dd>
+          <div *ngIf="customFieldData.customFieldType">
+            <a [routerLink]="['/custom-field-type', customFieldData.customFieldType?.id, 'view']">{{
+              customFieldData.customFieldType?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/custom-field-data', customFieldData.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

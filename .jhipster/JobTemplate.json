@@ -1,0 +1,74 @@
+{
+  "name": "JobTemplate",
+  "fields": [
+    {
+      "fieldName": "templateTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jobLevel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isDescriptionEditable",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "distributionType",
+      "fieldType": "JobTemplateDistributionType",
+      "fieldValues": "Automatic_Submit,Automatic_Approval,Tiered,Manual"
+    },
+    {
+      "fieldName": "distributionLimit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobCategoryTitle",
+      "otherEntityRelationshipName": "jobTemplate",
+      "relationshipName": "category"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "hierarchy",
+      "otherEntityRelationshipName": "jobTemplate",
+      "relationshipName": "hierarchy"
+    }
+  ],
+  "entityTableName": "job_template",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["VMSV2Data"],
+  "changelogDate": "20210510081426"
+}

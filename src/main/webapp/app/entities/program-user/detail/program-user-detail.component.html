@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="programUser">
+      <h2 data-cy="programUserDetailsHeading"><span jhiTranslate="vmsv2DataApp.programUser.detail.title">Program User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ programUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ programUser.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ programUser.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.email">Email</span></dt>
+        <dd>
+          <span>{{ programUser.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.sourceId">Source Id</span></dt>
+        <dd>
+          <span>{{ programUser.sourceId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.phoneNumber">Phone Number</span></dt>
+        <dd>
+          <span>{{ programUser.phoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.clientDesignation">Client Designation</span></dt>
+        <dd>
+          <span>{{ programUser.clientDesignation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.simplifyRole">Simplify Role</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vmsv2DataApp.Role.' + programUser.simplifyRole }}">{{ programUser.simplifyRole }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.fileUploadPath">File Upload Path</span></dt>
+        <dd>
+          <span>{{ programUser.fileUploadPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ programUser.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ programUser.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ programUser.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ programUser.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ programUser.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.manager">Manager</span></dt>
+        <dd>
+          <div *ngIf="programUser.manager">
+            <a [routerLink]="['/program-user', programUser.manager?.id, 'view']">{{ programUser.manager?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vmsv2DataApp.programUser.location">Location</span></dt>
+        <dd>
+          <div *ngIf="programUser.location">
+            <a [routerLink]="['/work-location', programUser.location?.id, 'view']">{{ programUser.location?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/program-user', programUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

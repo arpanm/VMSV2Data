@@ -1,0 +1,196 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-foundational-data-type-heading"
+        data-cy="FoundationalDataTypeCreateUpdateHeading"
+        jhiTranslate="vmsv2DataApp.foundationalDataType.home.createOrEditLabel"
+      >
+        Create or edit a Foundational Data Type
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInHierarchy"
+            for="field_requiredInHierarchy"
+            >Required In Hierarchy</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="requiredInHierarchy"
+            id="field_requiredInHierarchy"
+            data-cy="requiredInHierarchy"
+            formControlName="requiredInHierarchy"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInJobs" for="field_requiredInJobs"
+            >Required In Jobs</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="requiredInJobs"
+            id="field_requiredInJobs"
+            data-cy="requiredInJobs"
+            formControlName="requiredInJobs"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.requiredInSow" for="field_requiredInSow"
+            >Required In Sow</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="requiredInSow"
+            id="field_requiredInSow"
+            data-cy="requiredInSow"
+            formControlName="requiredInSow"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.fileUploadPath" for="field_fileUploadPath"
+            >File Upload Path</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="fileUploadPath"
+            id="field_fileUploadPath"
+            data-cy="fileUploadPath"
+            formControlName="fileUploadPath"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.createdBy" for="field_createdBy"
+            >Created By</label
+          >
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.createdAt" for="field_createdAt"
+            >Created At</label
+          >
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.updatedBy" for="field_updatedBy"
+            >Updated By</label
+          >
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.updatedAt" for="field_updatedAt"
+            >Updated At</label
+          >
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.foundationalDataType.hierarchy" for="field_hierarchy"
+            >Hierarchy</label
+          >
+          <select class="form-control" id="field_hierarchy" data-cy="hierarchy" name="hierarchy" formControlName="hierarchy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="hierarchyOption.id === editForm.get('hierarchy')!.value?.id ? editForm.get('hierarchy')!.value : hierarchyOption"
+              *ngFor="let hierarchyOption of hierarchiesSharedCollection; trackBy: trackHierarchyById"
+            >
+              {{ hierarchyOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

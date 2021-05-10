@@ -1,0 +1,368 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-hierarchy-heading" data-cy="HierarchyCreateUpdateHeading" jhiTranslate="vmsv2DataApp.hierarchy.home.createOrEditLabel">
+        Create or edit a Hierarchy
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.workFlow" for="field_workFlow">Work Flow</label>
+          <input type="text" class="form-control" name="workFlow" id="field_workFlow" data-cy="workFlow" formControlName="workFlow" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.preferredLanguage" for="field_preferredLanguage"
+            >Preferred Language</label
+          >
+          <select
+            class="form-control"
+            name="preferredLanguage"
+            formControlName="preferredLanguage"
+            id="field_preferredLanguage"
+            data-cy="preferredLanguage"
+          >
+            <option [ngValue]="null">{{ 'vmsv2DataApp.Language.null' | translate }}</option>
+            <option value="English">{{ 'vmsv2DataApp.Language.English' | translate }}</option>
+            <option value="Spanish">{{ 'vmsv2DataApp.Language.Spanish' | translate }}</option>
+            <option value="Hindi">{{ 'vmsv2DataApp.Language.Hindi' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.preferredCurrency" for="field_preferredCurrency"
+            >Preferred Currency</label
+          >
+          <select
+            class="form-control"
+            name="preferredCurrency"
+            formControlName="preferredCurrency"
+            id="field_preferredCurrency"
+            data-cy="preferredCurrency"
+          >
+            <option [ngValue]="null">{{ 'vmsv2DataApp.Currency.null' | translate }}</option>
+            <option value="USD">{{ 'vmsv2DataApp.Currency.USD' | translate }}</option>
+            <option value="INR">{{ 'vmsv2DataApp.Currency.INR' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.primaryCountry" for="field_primaryCountry"
+            >Primary Country</label
+          >
+          <select
+            class="form-control"
+            name="primaryCountry"
+            formControlName="primaryCountry"
+            id="field_primaryCountry"
+            data-cy="primaryCountry"
+          >
+            <option [ngValue]="null">{{ 'vmsv2DataApp.Country.null' | translate }}</option>
+            <option value="US">{{ 'vmsv2DataApp.Country.US' | translate }}</option>
+            <option value="India">{{ 'vmsv2DataApp.Country.India' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.primaryAddress" for="field_primaryAddress"
+            >Primary Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryAddress"
+            id="field_primaryAddress"
+            data-cy="primaryAddress"
+            formControlName="primaryAddress"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.secondaryCountry" for="field_secondaryCountry"
+            >Secondary Country</label
+          >
+          <select
+            class="form-control"
+            name="secondaryCountry"
+            formControlName="secondaryCountry"
+            id="field_secondaryCountry"
+            data-cy="secondaryCountry"
+          >
+            <option [ngValue]="null">{{ 'vmsv2DataApp.Country.null' | translate }}</option>
+            <option value="US">{{ 'vmsv2DataApp.Country.US' | translate }}</option>
+            <option value="India">{{ 'vmsv2DataApp.Country.India' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.secondaryAddress" for="field_secondaryAddress"
+            >Secondary Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryAddress"
+            id="field_secondaryAddress"
+            data-cy="secondaryAddress"
+            formControlName="secondaryAddress"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.primaryContactName" for="field_primaryContactName"
+            >Primary Contact Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryContactName"
+            id="field_primaryContactName"
+            data-cy="primaryContactName"
+            formControlName="primaryContactName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="vmsv2DataApp.hierarchy.primaryContactDesignation"
+            for="field_primaryContactDesignation"
+            >Primary Contact Designation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryContactDesignation"
+            id="field_primaryContactDesignation"
+            data-cy="primaryContactDesignation"
+            formControlName="primaryContactDesignation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.primaryContactEmail" for="field_primaryContactEmail"
+            >Primary Contact Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryContactEmail"
+            id="field_primaryContactEmail"
+            data-cy="primaryContactEmail"
+            formControlName="primaryContactEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.primaryContactPhone" for="field_primaryContactPhone"
+            >Primary Contact Phone</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primaryContactPhone"
+            id="field_primaryContactPhone"
+            data-cy="primaryContactPhone"
+            formControlName="primaryContactPhone"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactName" for="field_secondaryContactName"
+            >Secondary Contact Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryContactName"
+            id="field_secondaryContactName"
+            data-cy="secondaryContactName"
+            formControlName="secondaryContactName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactDesignation"
+            for="field_secondaryContactDesignation"
+            >Secondary Contact Designation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryContactDesignation"
+            id="field_secondaryContactDesignation"
+            data-cy="secondaryContactDesignation"
+            formControlName="secondaryContactDesignation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactEmail" for="field_secondaryContactEmail"
+            >Secondary Contact Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryContactEmail"
+            id="field_secondaryContactEmail"
+            data-cy="secondaryContactEmail"
+            formControlName="secondaryContactEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.secondaryContactPhone" for="field_secondaryContactPhone"
+            >Secondary Contact Phone</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="secondaryContactPhone"
+            id="field_secondaryContactPhone"
+            data-cy="secondaryContactPhone"
+            formControlName="secondaryContactPhone"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.fileUploadPath" for="field_fileUploadPath"
+            >File Upload Path</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="fileUploadPath"
+            id="field_fileUploadPath"
+            data-cy="fileUploadPath"
+            formControlName="fileUploadPath"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.isActive" for="field_isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.updatedBy" for="field_updatedBy">Updated By</label>
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.updatedAt" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="programOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : programOption"
+              *ngFor="let programOption of programsSharedCollection; trackBy: trackProgramById"
+            >
+              {{ programOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="vmsv2DataApp.hierarchy.parent" for="field_parent">Parent</label>
+          <select class="form-control" id="field_parent" data-cy="parent" name="parent" formControlName="parent">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="hierarchyOption.id === editForm.get('parent')!.value?.id ? editForm.get('parent')!.value : hierarchyOption"
+              *ngFor="let hierarchyOption of hierarchiesSharedCollection; trackBy: trackHierarchyById"
+            >
+              {{ hierarchyOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="vmsv2DataApp.hierarchy.managers" for="field_managers">Managers</label>
+          <select class="form-control" id="field_managers" data-cy="managers" multiple name="managers" formControlName="managers">
+            <option
+              [ngValue]="getSelectedProgramUser(programUserOption, editForm.get('managers')!.value)"
+              *ngFor="let programUserOption of programUsersSharedCollection; trackBy: trackProgramUserById"
+            >
+              {{ programUserOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

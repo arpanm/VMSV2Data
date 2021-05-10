@@ -1,0 +1,48 @@
+{
+  "vmsv2DataApp": {
+    "hierarchy": {
+      "home": {
+        "title": "Hierarchies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Hierarchy",
+        "createOrEditLabel": "Create or edit a Hierarchy",
+        "notFound": "No Hierarchies found"
+      },
+      "created": "A new Hierarchy is created with identifier {{ param }}",
+      "updated": "A Hierarchy is updated with identifier {{ param }}",
+      "deleted": "A Hierarchy is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Hierarchy {{ id }}?"
+      },
+      "detail": {
+        "title": "Hierarchy"
+      },
+      "id": "ID",
+      "name": "Name",
+      "workFlow": "Work Flow",
+      "preferredLanguage": "Preferred Language",
+      "preferredCurrency": "Preferred Currency",
+      "primaryCountry": "Primary Country",
+      "primaryAddress": "Primary Address",
+      "secondaryCountry": "Secondary Country",
+      "secondaryAddress": "Secondary Address",
+      "primaryContactName": "Primary Contact Name",
+      "primaryContactDesignation": "Primary Contact Designation",
+      "primaryContactEmail": "Primary Contact Email",
+      "primaryContactPhone": "Primary Contact Phone",
+      "secondaryContactName": "Secondary Contact Name",
+      "secondaryContactDesignation": "Secondary Contact Designation",
+      "secondaryContactEmail": "Secondary Contact Email",
+      "secondaryContactPhone": "Secondary Contact Phone",
+      "fileUploadPath": "File Upload Path",
+      "isActive": "Is Active",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "client": "Client",
+      "parent": "Parent",
+      "managers": "Managers"
+    }
+  }
+}
