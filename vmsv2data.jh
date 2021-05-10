@@ -284,6 +284,10 @@ relationship ManyToMany {
 }
 
 relationship ManyToOne {
+	ProgramUser{client} to Program
+}
+
+relationship ManyToOne {
 	ProgramUser{manager} to ProgramUser
 }
 
