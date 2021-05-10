@@ -1,0 +1,321 @@
+application {
+    config {
+      baseName VMSV2Data,
+      applicationType monolith,
+      packageName com.simplify.vms.onboard.data,
+      authenticationType jwt,
+      prodDatabaseType mysql,
+      clientFramework angular
+    }
+    entities *
+  	paginate Program, Hierarchy, ProgramUser, WorkLocation, FoundationalDataType, CustomFieldType, FoundationalData, JobCategoryTitle, JobTemplate, Vendor  with infinite-scroll
+	service all with serviceImpl
+}
+
+entity Program {
+	name String,
+    email String,
+	phoneNumber String,
+    deploymentRegion Region,
+    subdomain String,
+    implementationManagerEmail String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity Hierarchy {
+	name String,
+    workFlow String,
+    preferredLanguage Language,
+    preferredCurrency Currency,
+    primaryCountry Country,
+    primaryAddress String,
+    secondaryCountry Country,
+    secondaryAddress String,
+    primaryContactName String,
+    primaryContactDesignation String,
+    primaryContactEmail String,
+    primaryContactPhone String,
+    secondaryContactName String,
+    secondaryContactDesignation String,
+    secondaryContactEmail String,
+    secondaryContactPhone String,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity ProgramUser {
+    firstName String,
+    lastName String,
+    email String,
+    sourceId String,
+	phoneNumber String,
+    clientDesignation String,
+    simplifyRole Role,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity WorkLocation {
+	code String,
+    name String,
+    description String,
+    country Country,
+    state State,
+    address String,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+
+entity FoundationalDataType {
+	name String,
+    description String,
+    requiredInHierarchy Boolean,
+    requiredInJobs Boolean,
+    requiredInSow Boolean,
+    fileUploadPath String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity CustomFieldType {
+	name String,
+    type CustomFieldType,
+    description String,
+    label String,
+    placeholder String,
+    isMandatory Boolean,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity FoundationalData {
+	name String,
+    code String,
+    description String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity CustomFieldData {
+	value String,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity JobCategoryTitle {
+	category String,
+    title String,
+    code String
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity JobTemplate {
+	templateTitle String,
+    description String,
+    jobLevel Integer,
+    isDescriptionEditable Boolean,
+    distributionType JobTemplateDistributionType,
+    distributionLimit Integer,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity JobTemplateRateCard {
+	currency Currency,
+	hourlyMin Integer,
+    hourlyMax Integer,
+    dailyMin Integer,
+    dailyMax Integer,
+    weeklyMin Integer,
+    weeklyMax Integer,
+    monthlyMin Integer,
+    monthlyMax Integer,
+    yearlyMin Integer,
+    yearlyMax Integer,
+    isActive Boolean,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+enum JobTemplateDistributionType {
+	Automatic_Submit,
+    Automatic_Approval,
+    Tiered,
+    Manual
+}
+
+
+enum Region {
+	Ohio,
+    Mumbai
+}
+
+enum Language {
+	English,
+    Spanish,
+    Hindi
+}
+
+enum Currency {
+	USD,
+    INR
+}
+enum Country {
+	US,
+    India
+}
+
+enum Role {
+	Administrator,
+	Hiring_Manager,
+	Finance_Manager,
+	Timesheet_Approver,
+	Job_Approver
+}
+
+enum State {
+	Alabama,
+	Alaska,
+	Arizona,
+	Arkansas,
+	California,
+	Colorado,
+	Connecticut,
+	Delaware,
+	Florida,
+	Georgia,
+	Hawaii,
+	Idaho,
+	Illinois,
+	Indiana,
+	Iowa,
+	Kansas,
+	Kentucky,
+	Louisiana,
+	Maine,
+	Maryland,
+	Massachusetts,
+	Michigan,
+	Minnesota,
+	Mississippi,
+	Missouri,
+	Montana,
+	Nebraska,
+	Nevada,
+	New_Hampshire,
+	New_Jersey,
+	New_Mexico,
+	New_York,
+	North_Carolina,
+	North_Dakota,
+	Ohio,
+	Oklahoma,
+	Oregon,
+	Pennsylvania,
+	Rhode_Island,
+	South_Carolina,
+	South_Dakota,
+	Tennessee,
+	Texas,
+	Utah,
+	Vermont,
+	Virginia,
+	Washington,
+	West_Virginia,
+	Wisconsin,
+	Wyoming
+}
+
+relationship ManyToOne {
+	Hierarchy{client} to Program
+}
+
+relationship ManyToOne {
+	WorkLocation{client} to Program
+}
+
+relationship ManyToOne {
+	Hierarchy{parent} to Hierarchy
+}
+
+relationship ManyToMany {
+	Hierarchy{managers} to ProgramUser{hierarchy}
+}
+
+relationship ManyToOne {
+	ProgramUser{manager} to ProgramUser
+}
+
+relationship ManyToOne {
+	ProgramUser{location} to WorkLocation
+}
+
+
+relationship ManyToOne {
+	FoundationalDataType{hierarchy} to Hierarchy
+}
+
+relationship ManyToOne {
+	CustomFieldType{foundationalDataType} to FoundationalDataType
+}
+
+relationship ManyToOne {
+	FoundationalData{foundationalDataType} to FoundationalDataType
+}
+
+relationship ManyToMany {
+	FoundationalData{managers} to ProgramUser{foundationalData}
+}
+
+relationship ManyToOne {
+	CustomFieldData{foundationalData} to FoundationalData
+    CustomFieldData{customFieldType} to CustomFieldType
+}
+
+relationship ManyToOne {
+	JobTemplate{category} to JobCategoryTitle
+    JobTemplate{hierarchy} to Hierarchy
+}
+
+relationship ManyToOne {
+	JobTemplateRateCard{template} to JobTemplate
+    JobTemplateRateCard{category} to JobCategoryTitle
+}
